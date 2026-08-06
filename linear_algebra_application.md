@@ -33,7 +33,7 @@ Data objects are mathematically formalized into linear algebraic structures:
 - **Matrix ($\mathbf{A} \in \mathbb{R}^{m 	imes n}$):** A 2D array representing $m$ samples each having $n$ features, or a transformation mapping $n$-dimensional input vectors to $m$-dimensional output vectors.
 - **Tensor ($\mathcal{T} \in \mathbb{R}^{n_1 	imes n_2 	imes \dots 	imes n_k}$):** A multi-dimensional generalization (e.g., RGB video data with dimensions `Height × Width × Channels × Time`).
 
-$$	ext{Data Matrix } \mathbf{X} = egin{bmatrix} x_{11} & x_{12} & \dots & x_{1n} \ x_{21} & x_{22} & \dots & x_{2n} \ \dots & \dots & \ddots & \dots \ x_{m1} & x_{m2} & \dots & x_{mn} \end{bmatrix}$$
+$$\text{Data Matrix } \mathbf{X} = \begin{bmatrix} x_{11} & x_{12} & \dots & x_{1n} \\ x_{21} & x_{22} & \dots & x_{2n} \\ \dots & \dots & \ddots & \dots \\ x_{m1} & x_{m2} & \dots & x_{mn} \end{bmatrix}$$
 
 ---
 
@@ -91,7 +91,8 @@ print("Transformed Coordinates (Top-Left):", transformed_square[:, 2])
 In Information Retrieval and Natural Language Processing (NLP), unstructured text is converted into quantitative form using the **Vector Space Model (VSM)**.
 
 1. **Term-Document Matrix ($\mathbf{A}$):** Rows correspond to unique terms in the vocabulary, and columns correspond to documents.
-2. **TF-IDF Weighting:** $	ext{TF-IDF}(t, d, D) = 	ext{TF}(t, d) 	imes \log\left(rac{|D|}{|\{d \in D : t \in d\}|}ight)$
+2. **TF-IDF Weighting:** $	ext{TF-IDF}(t, d, D) = 	ext{TF}(t, d) 	imes \log\left(rac{|D|}{|\{d \in D : t \in d\}|}
+ight)$
 3. **Cosine Similarity:** To measure the semantic similarity between two documents $\mathbf{u}$ and $\mathbf{v}$, we compute the normalized dot product:
 
 $$	ext{Cosine Similarity}(\mathbf{u}, \mathbf{v}) = rac{\mathbf{u} \cdot \mathbf{v}}{\|\mathbf{u}\|_2 \|\mathbf{v}\|_2} = rac{\sum_{i=1}^n u_i v_i}{\sqrt{\sum_{i=1}^n u_i^2} \sqrt{\sum_{i=1}^n v_i^2}}$$
