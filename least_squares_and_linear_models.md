@@ -306,23 +306,23 @@ if __name__ == '__main__':
 All figures generated in this study material are saved as high-resolution (300 DPI) images and can be accessed/downloaded directly:
 
 1. **Figure 1: OLS Regression Fit and Residuals**
-   - File Path: [`fig1_ols_fit.png`](fig1_ols_fit.png)
+   - File Path: [`fig1_ols_fit.png`](figures/fig1_ols_fit.png)
    - Description: Displays data points, fitted regression line, and individual vertical residual lines $e_i$.
 
 2. **Figure 2: Geometric Interpretation of Least Squares**
-   - File Path: [`fig2_ols_geometric.png`](fig2_ols_geometric.png)
+   - File Path: [`fig2_ols_geometric.png`](figures/fig2_ols_geometric.png)
    - Description: 3D vector diagram illustrating the orthogonal projection of vector $\mathbf{y}$ onto column space $\mathcal{C}(\mathbf{X})$.
 
 3. **Figure 3: Polynomial Underfitting vs Overfitting**
-   - File Path: [`fig3_polynomial_under_overfit.png`](fig3_polynomial_under_overfit.png)
+   - File Path: [`fig3_polynomial_under_overfit.png`](figures/fig3_polynomial_under_overfit.png)
    - Description: Comparison of degree 1 (underfit), degree 3 (balanced), and degree 14 (overfit) polynomial least squares fits.
 
 4. **Figure 4: Lasso vs Ridge Contour Plots**
-   - File Path: [`fig4_ridge_lasso_contours.png`](fig4_ridge_lasso_contours.png)
+   - File Path: [`fig4_ridge_lasso_contours.png`](figures/fig4_ridge_lasso_contours.png)
    - Description: Geometry of $L_1$ diamond and $L_2$ circle constraint regions overlaid on OLS sum of squares contours.
 
 5. **Figure 5: Residual Diagnostics Plots**
-   - File Path: [`fig5_residual_diagnostics.png`](fig5_residual_diagnostics.png)
+   - File Path: [`fig5_residual_diagnostics.png`](figures/fig5_residual_diagnostics.png)
    - Description: 4-panel diagnostic suite featuring Residuals vs Fitted, Normal Q-Q Plot, Scale-Location, and Error Distribution.
 
 ---
