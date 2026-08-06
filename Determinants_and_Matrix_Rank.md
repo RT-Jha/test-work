@@ -87,7 +87,7 @@ where $M_{ij}$ is the minor (determinant of the $(n-1) 	imes (n-1)$ submatrix ob
 
 ## 3. Rank of a Matrix
 
-The **rank** of a matrix $A \in \mathbb{R}^{m \times n}$, denoted as $\text{rank}(A)$ or $\operatorname{rg}(A)$, is the maximum number of **linearly independent** row vectors (or column vectors) in $A$.
+The **rank** of a matrix $A \in \mathbb{R}^{m \times n}$, denoted as $\text{rank}(A)$ or $\text{rg}(A)$, is the maximum number of **linearly independent** row vectors (or column vectors) in $A$.
 
 ### Linearly Independent Vectors & Vector Spaces
 
