@@ -88,73 +88,14 @@ The Gram-Schmidt process is an algorithm for converting any set of linearly inde
 
 ![Figure 3: Gram-Schmidt Process](figures/gram_schmidt_process.png)
 
-
-
-### Step-by-Step Algorithm
-
-1. Set the first orthogonal vector:
-
-   $$
-   \mathbf{v}_1 = \mathbf{x}_1
-   $$
-
-2. Remove the projection of $\mathbf{x}_2$ onto $\mathbf{v}_1$:
-
-   $$
-   \mathbf{v}_2
-   =
-   \mathbf{x}_2
-   -
-   \text{proj}_{\mathbf{v}_1}(\mathbf{x}_2)
-   =
-   \mathbf{x}_2
-   -
-   \frac{\mathbf{x}_2 \cdot \mathbf{v}_1}{\|\mathbf{v}_1\|^2}
-   \mathbf{v}_1
-   $$
-
-3. Remove the projections of $\mathbf{x}_3$ onto both previous orthogonal vectors:
-
-   $$
-   \mathbf{v}_3
-   =
-   \mathbf{x}_3
-   -
-   	ext{proj}_{\mathbf{v}_1}(\mathbf{x}_3)
-   -
-   	ext{proj}_{\mathbf{v}_2}(\mathbf{x}_3)
-   $$
-
-   $$
-   =
-   \mathbf{x}_3
-   -
-   \frac{\mathbf{x}_3 \cdot \mathbf{v}_1}{\|\mathbf{v}_1\|^2}
-   \mathbf{v}_1
-   -
-   \frac{\mathbf{x}_3 \cdot \mathbf{v}_2}{\|\mathbf{v}_2\|^2}
-   \mathbf{v}_2
-   $$
-
-4. In general, for the $k^{\text{th}}$ vector:
-
-   $$
-   \mathbf{v}_k
-   =
-   \mathbf{x}_k
-   -
-   \sum_{j=1}^{k-1}
-   \frac{\mathbf{x}_k \cdot \mathbf{v}_j}{\|\mathbf{v}_j\|^2}
-   \mathbf{v}_j
-   $$
-
-5. To convert the orthogonal basis into an **orthonormal basis**, normalize each vector:
-
-   $$
-   \mathbf{e}_k
-   =
-   \frac{\mathbf{v}_k}{\|\mathbf{v}_k\|}
-   $$
+### Step-by-Step Algorithm:
+1. $\mathbf{v}_1 = \mathbf{x}_1$
+2. $\mathbf{v}_2 = \mathbf{x}_2 - \mathrm{proj}_{\mathbf{v}_1}(\mathbf{x}_2) = \mathbf{x}_2 - \frac{\mathbf{x}_2 \cdot \mathbf{v}_1}{\Vert{}\mathbf{v}_1\Vert{}^2} \mathbf{v}_1$
+3. $\mathbf{v}_3 = \mathbf{x}_3 - \mathrm{proj}_{\mathbf{v}_1}(\mathbf{x}_3) - \mathrm{proj}_{\mathbf{v}_2}(\mathbf{x}_3) = \mathbf{x}_3 - \frac{\mathbf{x}_3 \cdot \mathbf{v}_1}{\Vert{}\mathbf{v}_1\Vert{}^2} \mathbf{v}_1 - \frac{\mathbf{x}_3 \cdot \mathbf{v}_2}{\Vert{}\mathbf{v}_2\Vert{}^2} \mathbf{v}_2$
+4. In general for vector $k$:
+   $$\mathbf{v}_k = \mathbf{x}_k - \sum_{j=1}^{k-1} \frac{\mathbf{x}_k \cdot \mathbf{v}_j}{\Vert{}\mathbf{v}_j\Vert{}^2} \mathbf{v}_j$$
+5. To convert to an **orthonormal basis**, normalize each vector:
+   $$\mathbf{e}_k = \frac{\mathbf{v}_k}{\Vert{}\mathbf{v}_k\Vert{}}$$
 
 ---
 
@@ -239,15 +180,5 @@ if __name__ == '__main__':
     Q = gram_schmidt(X, normalize=True)
     print("\nOrthonormal basis Q:\n", Q)
     print("Q^T @ Q (Identity Check):\n", np.round(Q.T @ Q, 8))
-```
-
----
-
-## 5. Summary Table
-
-| Concept | Mathematical Formula | Key Property |
-| :--- | :--- | :--- |
-| **Orthogonal Vectors** | $\mathbf{u} \cdot \mathbf{v} = 0$ | Angle $\theta = 90^\circ$ |
-| **Projection on Line** | $\hat{\mathbf{y}} = \frac{\mathbf{y} \cdot \mathbf{u}}{\|\mathbf{u}\|^2}\mathbf{u}$ | Error $\mathbf{z} = \mathbf{y} - \hat{\mathbf{y}} \perp \mathbf{u}$ |
 | **Projection Matrix** | $P = A(A^T A)^{-1}A^T$ | $P^T = P$ and $P^2 = P$ |
 | **Gram-Schmidt Step** | $\mathbf{v}_k = \mathbf{x}_k - \sum_{j=1}^{k-1} \mathrm{proj}_{\mathbf{v}_j}(\mathbf{x}_k)$ | Constructs orthogonal vectors recursively |
