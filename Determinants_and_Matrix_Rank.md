@@ -303,23 +303,117 @@ All visual diagrams generated for this document are saved locally and available 
 ## 7. Solved Practice Problems
 
 ### Problem 1: Determinant Calculation
+
 **Find the determinant of the matrix:**
-$$A = \begin{pmatrix} 2 & 0 & 3 \ 1 & 4 & -10 \ 0 & 0 & 5 \end{pmatrix}$$
+
+$$
+A =
+\begin{pmatrix}
+2 & 0 & 3 \\
+1 & 4 & -10 \\
+0 & 0 & 5
+\end{pmatrix}
+$$
 
 **Solution:**
-Expanding along the 3rd row (which has two zeros):
-$$\det(A) = 0 \cdot C_{31} + 0 \cdot C_{32} + 5 \cdot C_{33} = 5 \cdot \begin{vmatrix} 2 & 0 \ 1 & 4 \end{vmatrix}$$
-$$\det(A) = 5 \cdot (2 \cdot 4 - 0 \cdot 1) = 5 \cdot 8 = 40$$
+
+Expanding along the third row (which contains two zeros):
+
+$$
+\det(A)
+=
+0 \cdot C_{31}
++
+0 \cdot C_{32}
++
+5 \cdot C_{33}
+=
+5
+\begin{vmatrix}
+2 & 0 \\
+1 & 4
+\end{vmatrix}
+$$
+
+Now compute the \(2 \times 2\) determinant:
+
+$$
+\det(A)
+=
+5 \times (2 \times 4 - 0 \times 1)
+=
+5 \times 8
+=
+40
+$$
 
 ---
 
 ### Problem 2: Rank Analysis with a Parameter
-**Find the value of $k$ for which the matrix $B$ has rank less than 3:**
-$$B = \begin{pmatrix} 1 & 2 & 3 \ 0 & k & 4 \ 2 & 4 & 6 \end{pmatrix}$$
+
+**Find the value of \(k\) for which the matrix \(B\) has rank less than 3.**
+
+$$
+B =
+\begin{pmatrix}
+1 & 2 & 3 \\
+0 & k & 4 \\
+2 & 4 & 6
+\end{pmatrix}
+$$
 
 **Solution:**
-Notice that Row 3 is twice Row 1 ($R_3 = 2 R_1$).
-Applying row operation $R_3 	o R_3 - 2R_1$:
-$$B \sim egin{pmatrix} 1 & 2 & 3 \ 0 & k & 4 \ 0 & 0 & 0 \end{pmatrix}$$
-Since Row 3 is all zeros, the maximum possible rank is 2. Therefore, $	ext{rank}(B) < 3$ for **all values of $k$**. If $k = 0$, $	ext{rank}(B) = 1$; if $k 
-eq 0$, $	ext{rank}(B) = 2$.
+
+Observe that the third row is twice the first row:
+
+$$
+R_3 = 2R_1
+$$
+
+Apply the row operation
+
+$$
+R_3 \rightarrow R_3 - 2R_1
+$$
+
+to obtain
+
+$$
+B
+\sim
+\begin{pmatrix}
+1 & 2 & 3 \\
+0 & k & 4 \\
+0 & 0 & 0
+\end{pmatrix}
+$$
+
+Since the third row becomes a zero row, the matrix can have **at most rank 2**.
+
+- If \(k \neq 0\), the first two rows are linearly independent, so
+
+  $$
+  \operatorname{rank}(B) = 2.
+  $$
+
+- If \(k = 0\), the matrix becomes
+
+  $$
+  \begin{pmatrix}
+  1 & 2 & 3 \\
+  0 & 0 & 4 \\
+  0 & 0 & 0
+  \end{pmatrix},
+  $$
+
+  where the first two rows are still linearly independent. Hence,
+
+  $$
+  \operatorname{rank}(B) = 2.
+  $$
+
+Therefore,
+
+$$
+\boxed{\operatorname{rank}(B) < 3 \text{ for every value of } k.}
+$$
