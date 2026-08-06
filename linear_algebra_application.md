@@ -134,8 +134,8 @@ print(f"Similarity (Doc A, Doc C): {sim_ac:.4f}")
 ### Theoretical Overview
 High-dimensional datasets suffer from the *curse of dimensionality*. **Principal Component Analysis (PCA)** projects high-dimensional data $\mathbf{X} \in \mathbb{R}^{m 	imes n}$ onto a lower-dimensional subspace while maximizing explained variance.
 
-1. Center data: $\mathbf{X}_c = \mathbf{X} - oldsymbol{\mu}$
-2. Compute Covariance Matrix: $\mathbf{\Sigma} = rac{1}{m-1} \mathbf{X}_c^T \mathbf{X}_c$
+1. Center data: $\mathbf{X}_c = \mathbf{X} - \boldsymbol{\mu}$
+2. Compute Covariance Matrix: $\mathbf{\Sigma} = \frac{1}{m-1} \mathbf{X}_c^T \mathbf{X}_c$
 3. Compute Eigenvalues ($\lambda$) and Eigenvectors ($\mathbf{v}$):
 
 $$\mathbf{\Sigma} \mathbf{v} = \lambda \mathbf{v}$$
@@ -233,10 +233,10 @@ Web graphs, social networks, and routing topologies are modeled as directed grap
 
 Google's **PageRank** algorithm measures the relative importance of web pages by finding the stationary probability distribution of a random web surfer. 
 
-1. Form Transition Probability Matrix $\mathbf{M}$ where $M_{ij} = rac{1}{L(p_j)}$ if a link exists from $p_j$ to $p_i$.
-2. Add damping factor $d pprox 0.85$ to ensure irreducibility:
+1. Form Transition Probability Matrix $\mathbf{M}$ where $M_{ij} = \frac{1}{L(p_j)}$ if a link exists from $p_j$ to $p_i$.
+2. Add damping factor $d \approx 0.85$ to ensure irreducibility:
 
-$$\mathbf{G} = d \mathbf{M} + rac{1 - d}{N} \mathbf{E}$$
+$$\mathbf{G} = d \mathbf{M} + \frac{1 - d}{N} \mathbf{E}$$
 
 3. Solve for stationary eigenvector $\mathbf{v}$:
 
