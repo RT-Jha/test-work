@@ -7,9 +7,9 @@ Welcome to this comprehensive reading material on **Orthogonality and Projection
 ## 📥 Download Figures
 
 You can download all generated figures used in this document using the links below:
-- [Download Figure 1: Orthogonal Vectors](orthogonal_vectors.png)
-- [Download Figure 2: Orthogonal Projection onto a Line](orthogonal_projection.png)
-- [Download Figure 3: Gram-Schmidt Process Step](gram_schmidt_process.png)
+- [Download Figure 1: Orthogonal Vectors](figures/orthogonal_vectors.png)
+- [Download Figure 2: Orthogonal Projection onto a Line](figures/orthogonal_projection.png)
+- [Download Figure 3: Gram-Schmidt Process Step](figures/gram_schmidt_process.png)
 
 ---
 
@@ -30,7 +30,7 @@ $$\mathbf{u} \cdot \mathbf{v} = \|\mathbf{u}\| \|\mathbf{v}\| \cos\theta$$
 
 When $\mathbf{u} \cdot \mathbf{v} = 0$, $\cos\theta = 0$, which implies an angle of $90^\circ$ ( perpendicular ).
 
-![Figure 1: Orthogonal Vectors](figures\orthogonal_vectors.png)
+![Figure 1: Orthogonal Vectors](figures/orthogonal_vectors.png)
 
 ### 1.2 Orthogonal and Orthonormal Sets
 A set of non-zero vectors $\{\mathbf{u}_1, \mathbf{u}_2, \dots, \mathbf{u}_k\}$ in $\mathbb{R}^n$ is an **orthogonal set** if:
@@ -64,7 +64,7 @@ $$\mathrm{proj}_L(\mathbf{y}) = \hat{\mathbf{y}} = \left( \frac{\mathbf{y} \cdot
 
 The component $\mathbf{z} = \mathbf{y} - \hat{\mathbf{y}}$ is perpendicular to $\mathbf{u}$.
 
-![Figure 2: Orthogonal Projection](figures\orthogonal_projection.png)
+![Figure 2: Orthogonal Projection](figures/orthogonal_projection.png)
 
 ### 2.2 Projection onto a General Subspace
 Let $W$ be a subspace of $\mathbb{R}^n$ with orthogonal basis $\{\mathbf{u}_1, \mathbf{u}_2, \dots, \mathbf{u}_p\}$. The orthogonal projection of $\mathbf{y}$ onto $W$ is:
@@ -86,7 +86,7 @@ Properties of $P$:
 
 The Gram-Schmidt process is an algorithm for converting any set of linearly independent vectors $\{\mathbf{x}_1, \mathbf{x}_2, \dots, \mathbf{x}_p\}$ into an orthogonal basis $\{\mathbf{v}_1, \mathbf{v}_2, \dots, \mathbf{v}_p\}$ for the same subspace.
 
-![Figure 3: Gram-Schmidt Process](figures\gram_schmidt_process.png)
+![Figure 3: Gram-Schmidt Process](figures/gram_schmidt_process.png)
 
 ### Step-by-Step Algorithm:
 1. $\mathbf{v}_1 = \mathbf{x}_1$
