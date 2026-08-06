@@ -193,7 +193,7 @@ print("Explained Variance Ratios:", exp_var)
 ### Theoretical Overview
 Modern recommendation engines (e.g., Netflix, Spotify) model user-item ratings using sparse matrices $\mathbf{R} \in \mathbb{R}^{u 	imes i}$. Matrix Factorization decomposes $\mathbf{R}$ into low-rank matrices representing latent features:
 
-$$\mathbf{R} pprox \mathbf{P} \mathbf{Q}^T$$
+$$\mathbf{R} \approx \mathbf{P} \mathbf{Q}^T$$
 
 Where $\mathbf{P} \in \mathbb{R}^{u 	imes k}$ captures user preferences, and $\mathbf{Q} \in \mathbb{R}^{i 	imes k}$ captures item attributes across $k$ latent dimensions.
 
