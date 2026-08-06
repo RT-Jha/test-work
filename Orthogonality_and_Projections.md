@@ -105,7 +105,7 @@ The Gram-Schmidt process is an algorithm for converting any set of linearly inde
    =
    \mathbf{x}_2
    -
-   \operatorname{proj}_{\mathbf{v}_1}(\mathbf{x}_2)
+   \text{proj}_{\mathbf{v}_1}(\mathbf{x}_2)
    =
    \mathbf{x}_2
    -
@@ -120,9 +120,9 @@ The Gram-Schmidt process is an algorithm for converting any set of linearly inde
    =
    \mathbf{x}_3
    -
-   \operatorname{proj}_{\mathbf{v}_1}(\mathbf{x}_3)
+   	ext{proj}_{\mathbf{v}_1}(\mathbf{x}_3)
    -
-   \operatorname{proj}_{\mathbf{v}_2}(\mathbf{x}_3)
+   	ext{proj}_{\mathbf{v}_2}(\mathbf{x}_3)
    $$
 
    $$
