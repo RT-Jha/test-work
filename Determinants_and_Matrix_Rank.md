@@ -417,3 +417,15 @@ Therefore,
 $$
 \boxed{\operatorname{rank}(B) < 3 \text{ for every value of } k.}
 $$
+
+
+
+### Problem 2: Rank Analysis with a Parameter
+**Find the value of $k$ for which the matrix $B$ has rank less than 3:**
+$$B = \begin{pmatrix} 1 & 2 & 3 \\ 0 & k & 4 \\ 2 & 4 & 6 \end{pmatrix}$$
+
+**Solution:**
+Notice that Row 3 is twice Row 1 ($R_3 = 2 R_1$).
+Applying row operation $R_3 \to R_3 - 2R_1$:
+$$B \sim \begin{pmatrix} 1 & 2 & 3 \\ 0 & k & 4 \\ 0 & 0 & 0 \end{pmatrix}$$
+Since Row 3 is all zeros, the maximum possible rank is 2. Therefore, $\text{rank}(B) < 3$ for **all values of $k$**. If $k = 0$, $\text{rank}(B) = 1$; if $k \neq 0$, $\text{rank}(B) = 2$.
