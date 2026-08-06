@@ -44,7 +44,7 @@ A digital grayscale image is represented as a matrix $\mathbf{I} \in \mathbb{R}^
 
 Geometric operations such as rotation, scaling, translation, and shearing in computer graphics are modeled using **Affine Transformations** via matrix-vector multiplication. To perform translation linear-algebraically, **Homogeneous Coordinates** are used:
 
-$$egin{bmatrix} x' \ y' \ 1 \end{bmatrix} = egin{bmatrix} s_x \cos	heta & -s_y \sin	heta & t_x \ s_x \sin	heta & s_y \cos	heta & t_y \ 0 & 0 & 1 \end{bmatrix} egin{bmatrix} x \ y \ 1 \end{bmatrix}$$
+$$\begin{bmatrix} x' \\ y' \\ 1 \end{bmatrix} = \begin{bmatrix} s_x \cos\theta & -s_y \sin\theta & t_x \\ s_x \sin\theta & s_y \cos\theta & t_y \\ 0 & 0 & 1 \end{bmatrix} \begin{bmatrix} x \\ y \\ 1 \end{bmatrix}$$
 
 ### Visual Explanation
 The plot below demonstrates how a 2D vector representation of a unit square undergoes rotation and translation via matrix multiplication.
