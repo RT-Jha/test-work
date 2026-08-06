@@ -13,7 +13,7 @@
 5. [Statistical Assumptions & Gauss-Markov Theorem](#5-statistical-assumptions--gauss-markov-theorem)
 6. [Residual Analysis & Diagnostic Testing](#6-residual-analysis--diagnostic-testing)
 7. [Polynomial Regression & Complexity Control](#7-polynomial-regression--complexity-control)
-8. [Regularized Linear Models (Ridge, Lasso, ElasticNet)](#8-regularized-linear-models)
+8. [Regularized Linear Models (Ridge, Lasso, ElasticNet)](#8-regularized-linear-models-ridge-lasso-elasticnet)
 9. [Complete Python Reference Implementation](#9-complete-python-reference-implementation)
 10. [Figures Download & Reference Links](#10-figures-download--reference-links)
 
@@ -25,51 +25,50 @@ A **Linear Model** models the relationship between a dependent target variable $
 
 The general equation for a linear model with $p$ predictor variables is:
 
-$$ y = eta_0 + eta_1 x_1 + eta_2 x_2 + \dots + eta_p x_p + arepsilon $$
+$$y = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \dots + \beta_p x_p + \varepsilon$$
 
 Where:
-- $eta_0$: Intercept term (bias).
-- $eta_j$: Slope parameter (coefficient) associated with feature $x_j$.
-- $arepsilon$: Unobserved random noise/error term representing measurement error or unmodeled variations.
+- $\beta_0$: Intercept term (bias).
+- $\beta_j$: Slope parameter (coefficient) associated with feature $x_j$.
+- $\varepsilon$: Unobserved random noise/error term representing measurement error or unmodeled variations.
 
-For a dataset containing $n$ observations $\{( \mathbf{x}_i, y_i )\}_{i=1}^n$, the system of linear equations can be written in compact matrix notation:
+For a dataset containing $n$ observations $\{(\mathbf{x}_i, y_i)\}_{i=1}^n$, the system of linear equations can be written in compact matrix notation:
 
-$$ \mathbf{y} = \mathbf{X}oldsymbol{eta} + oldsymbol{arepsilon} $$
+$$\mathbf{y} = \mathbf{X} \boldsymbol{\beta} + \boldsymbol{\varepsilon}$$
 
 Where:
 - $\mathbf{y} \in \mathbb{R}^n$: Target vector, $\mathbf{y} = [y_1, y_2, \dots, y_n]^T$.
-- $\mathbf{X} \in \mathbb{R}^{n 	imes (p+1)}$: Design matrix, where row $i$ contains $[1, x_{i1}, x_{i2}, \dots, x_{ip}]$.
-- $oldsymbol{eta} \in \mathbb{R}^{p+1}$: Vector of unknown parameters, $oldsymbol{eta} = [eta_0, eta_1, \dots, eta_p]^T$.
-- $oldsymbol{arepsilon} \in \mathbb{R}^n$: Error vector, $oldsymbol{arepsilon} = [arepsilon_1, arepsilon_2, \dots, arepsilon_n]^T$.
+- $\mathbf{X} \in \mathbb{R}^{n \times (p+1)}$: Design matrix, where row $i$ contains $[1, x_{i1}, x_{i2}, \dots, x_{ip}]$.
+- $\boldsymbol{\beta} \in \mathbb{R}^{p+1}$: Vector of unknown parameters, $\boldsymbol{\beta} = [\beta_0, \beta_1, \dots, \beta_p]^T$.
+- $\boldsymbol{\varepsilon} \in \mathbb{R}^n$: Error vector, $\boldsymbol{\varepsilon} = [\varepsilon_1, \varepsilon_2, \dots, \varepsilon_n]^T$.
 
 ---
 
 ## 2. Ordinary Least Squares (OLS) Formulation
 
-The goal of Ordinary Least Squares (OLS) is to find the coefficient vector $\hat{oldsymbol{eta}}$ that minimizes the **Sum of Squared Residuals (SSR)**:
+The goal of Ordinary Least Squares (OLS) is to find the coefficient vector $\hat{\boldsymbol{\beta}}$ that minimizes the **Sum of Squared Residuals (SSR)**:
 
-$$ S(oldsymbol{eta}) = \sum_{i=1}^n (y_i - \mathbf{x}_i^T oldsymbol{eta})^2 = \|\mathbf{y} - \mathbf{X}oldsymbol{eta}\|_2^2 $$
+$$S(\boldsymbol{\beta}) = \sum_{i=1}^n (y_i - \mathbf{x}_i^T \boldsymbol{\beta})^2 = \Vert{}\mathbf{y} - \mathbf{X} \boldsymbol{\beta}\Vert{}_2^2$$
 
 Expanding the matrix norm:
 
-$$ S(oldsymbol{eta}) = (\mathbf{y} - \mathbf{X}oldsymbol{eta})^T (\mathbf{y} - \mathbf{X}oldsymbol{eta}) = \mathbf{y}^T \mathbf{y} - 2 oldsymbol{eta}^T \mathbf{X}^T \mathbf{y} + oldsymbol{eta}^T \mathbf{X}^T \mathbf{X} oldsymbol{eta} $$
+$$S(\boldsymbol{\beta}) = (\mathbf{y} - \mathbf{X} \boldsymbol{\beta})^T (\mathbf{y} - \mathbf{X} \boldsymbol{\beta}) = \mathbf{y}^T \mathbf{y} - 2 \boldsymbol{\beta}^T \mathbf{X}^T \mathbf{y} + \boldsymbol{\beta}^T \mathbf{X}^T \mathbf{X} \boldsymbol{\beta}$$
 
-To minimize $S(oldsymbol{eta})$, we compute the gradient with respect to $oldsymbol{eta}$ and set it to zero:
+To minimize $S(\boldsymbol{\beta})$, we compute the gradient with respect to $\boldsymbol{\beta}$ and set it to zero:
 
-$$ 
-abla_{oldsymbol{eta}} S(oldsymbol{eta}) = -2 \mathbf{X}^T \mathbf{y} + 2 \mathbf{X}^T \mathbf{X} oldsymbol{eta} = \mathbf{0} $$
+$$\nabla_{\boldsymbol{\beta}} S(\boldsymbol{\beta}) = -2 \mathbf{X}^T \mathbf{y} + 2 \mathbf{X}^T \mathbf{X} \boldsymbol{\beta} = \mathbf{0}$$
 
 This yields the fundamental **Normal Equations**:
 
-$$ \mathbf{X}^T \mathbf{X} \hat{oldsymbol{eta}} = \mathbf{X}^T \mathbf{y} $$
+$$\mathbf{X}^T \mathbf{X} \hat{\boldsymbol{\beta}} = \mathbf{X}^T \mathbf{y}$$
 
 Assuming $\mathbf{X}^T \mathbf{X}$ is invertible (i.e., $\mathbf{X}$ has full column rank $p+1$), the unique OLS estimator is:
 
-$$ \hat{oldsymbol{eta}} = (\mathbf{X}^T \mathbf{X})^{-1} \mathbf{X}^T \mathbf{y} $$
+$$\hat{\boldsymbol{\beta}} = (\mathbf{X}^T \mathbf{X})^{-1} \mathbf{X}^T \mathbf{y}$$
 
 The predicted values $\hat{\mathbf{y}}$ are given by:
 
-$$ \hat{\mathbf{y}} = \mathbf{X} \hat{oldsymbol{eta}} = \mathbf{X} (\mathbf{X}^T \mathbf{X})^{-1} \mathbf{X}^T \mathbf{y} = \mathbf{H} \mathbf{y} $$
+$$\hat{\mathbf{y}} = \mathbf{X} \hat{\boldsymbol{\beta}} = \mathbf{X} (\mathbf{X}^T \mathbf{X})^{-1} \mathbf{X}^T \mathbf{y} = \mathbf{H} \mathbf{y}$$
 
 Where $\mathbf{H} = \mathbf{X}(\mathbf{X}^T \mathbf{X})^{-1}\mathbf{X}^T$ is known as the **Hat Matrix** (or projection matrix).
 
@@ -79,11 +78,11 @@ Where $\mathbf{H} = \mathbf{X}(\mathbf{X}^T \mathbf{X})^{-1}\mathbf{X}^T$ is kno
 
 ## 3. Geometric Interpretation of Least Squares
 
-Geometrically, the column space (range) of $\mathbf{X}$, denoted as $\mathcal{C}(\mathbf{X})$, forms a subspace of $\mathbb{R}^n$. The predicted response vector $\hat{\mathbf{y}} = \mathbf{X}\hat{oldsymbol{eta}}$ must lie within $\mathcal{C}(\mathbf{X})$.
+Geometrically, the column space (range) of $\mathbf{X}$, denoted as $\mathcal{C}(\mathbf{X})$, forms a subspace of $\mathbb{R}^n$. The predicted response vector $\hat{\mathbf{y}} = \mathbf{X}\hat{\boldsymbol{\beta}}$ must lie within $\mathcal{C}(\mathbf{X})$.
 
-If $\mathbf{y}$ does not lie within $\mathcal{C}(\mathbf{X})$, the residual vector $\mathbf{e} = \mathbf{y} - \hat{\mathbf{y}}$ represents the vector connecting $\mathbf{y}$ to $\hat{\mathbf{y}}$. The length $\|\mathbf{e}\|_2$ is minimized when $\mathbf{e}$ is **orthogonal** to the subspace $\mathcal{C}(\mathbf{X})$.
+If $\mathbf{y}$ does not lie within $\mathcal{C}(\mathbf{X})$, the residual vector $\mathbf{e} = \mathbf{y} - \hat{\mathbf{y}}$ represents the vector connecting $\mathbf{y}$ to $\hat{\mathbf{y}}$. The length $\Vert{}\mathbf{e}\Vert{}_2$ is minimized when $\mathbf{e}$ is **orthogonal** to the subspace $\mathcal{C}(\mathbf{X})$.
 
-$$ \mathbf{X}^T \mathbf{e} = \mathbf{X}^T (\mathbf{y} - \mathbf{X}\hat{oldsymbol{eta}}) = \mathbf{0} $$
+$$\mathbf{X}^T \mathbf{e} = \mathbf{X}^T (\mathbf{y} - \mathbf{X}\hat{\boldsymbol{\beta}}) = \mathbf{0}$$
 
 This orthogonality condition directly generates the Normal Equations. The hat matrix $\mathbf{H}$ acts as an orthogonal projection operator that projects any vector $\mathbf{y} \in \mathbb{R}^n$ onto $\mathcal{C}(\mathbf{X})$.
 
@@ -96,22 +95,22 @@ This orthogonality condition directly generates the Normal Equations. The hat ma
 In computational practice, explicitly computing $(\mathbf{X}^T \mathbf{X})^{-1}$ is discouraged due to numerical instability and high condition numbers. Three main numerical solvers are used:
 
 ### 4.1 Normal Equations
-- **Method**: Solve $(\mathbf{X}^T \mathbf{X}) oldsymbol{eta} = \mathbf{X}^T \mathbf{y}$ using Cholesky Decomposition on $\mathbf{X}^T \mathbf{X}$.
-- **Complexity**: $\mathcal{O}(n p^2 + p^3/3)$.
-- **Pros/Cons**: Fast when $n \gg p$, but squares the condition number $\kappa(\mathbf{X}^T \mathbf{X}) = \kappa(\mathbf{X})^2$, leading to precision loss.
+* **Method**: Solve $(\mathbf{X}^T \mathbf{X}) \boldsymbol{\beta} = \mathbf{X}^T \mathbf{y}$ using Cholesky Decomposition on $\mathbf{X}^T \mathbf{X}$.
+* **Complexity**: $\mathcal{O}(n p^2 + p^3/3)$.
+* **Pros/Cons**: Fast when $n \gg p$, but squares the condition number $\kappa(\mathbf{X}^T \mathbf{X}) = \kappa(\mathbf{X})^2$, leading to precision loss.
 
 ### 4.2 QR Decomposition
-- **Method**: Decompose $\mathbf{X} = \mathbf{Q} \mathbf{R}$, where $\mathbf{Q} \in \mathbb{R}^{n 	imes p}$ has orthonormal columns and $\mathbf{R} \in \mathbb{R}^{p 	imes p}$ is upper triangular.
-- **Formulation**:
-  $$ \mathbf{X}^T \mathbf{X} oldsymbol{eta} = \mathbf{X}^T \mathbf{y} \implies \mathbf{R}^T \mathbf{Q}^T \mathbf{Q} \mathbf{R} oldsymbol{eta} = \mathbf{R}^T \mathbf{Q}^T \mathbf{y} \implies \mathbf{R} oldsymbol{eta} = \mathbf{Q}^T \mathbf{y} $$
-- **Solving**: Use back-substitution to solve $\mathbf{R}oldsymbol{eta} = \mathbf{Q}^T \mathbf{y}$.
-- **Pros**: Numerically stable; condition number is $\kappa(\mathbf{X})$. Recommended default method.
+* **Method**: Decompose $\mathbf{X} = \mathbf{Q} \mathbf{R}$, where $\mathbf{Q} \in \mathbb{R}^{n \times p}$ has orthonormal columns and $\mathbf{R} \in \mathbb{R}^{p \times p}$ is upper triangular.
+* **Formulation**:
+  $$\mathbf{X}^T \mathbf{X} \boldsymbol{\beta} = \mathbf{X}^T \mathbf{y} \implies \mathbf{R}^T \mathbf{Q}^T \mathbf{Q} \mathbf{R} \boldsymbol{\beta} = \mathbf{R}^T \mathbf{Q}^T \mathbf{y} \implies \mathbf{R} \boldsymbol{\beta} = \mathbf{Q}^T \mathbf{y}$$
+* **Solving**: Use back-substitution to solve $\mathbf{R} \boldsymbol{\beta} = \mathbf{Q}^T \mathbf{y}$.
+* **Pros**: Numerically stable; condition number is $\kappa(\mathbf{X})$. Recommended default method.
 
 ### 4.3 Singular Value Decomposition (SVD)
-- **Method**: Factorize $\mathbf{X} = \mathbf{U} oldsymbol{\Sigma} \mathbf{V}^T$, where $\mathbf{U}$ and $\mathbf{V}$ are orthogonal matrices, and $oldsymbol{\Sigma}$ contains singular values $\sigma_i$.
-- **Formulation**:
-  $$ \hat{oldsymbol{eta}} = \mathbf{X}^+ \mathbf{y} = \mathbf{V} oldsymbol{\Sigma}^+ \mathbf{U}^T \mathbf{y} $$
-- **Pros**: Handles rank-deficient or singular matrices (collinearity) by setting small singular values ($1/\sigma_i$) to 0.
+* **Method**: Factorize $\mathbf{X} = \mathbf{U} \boldsymbol{\Sigma} \mathbf{V}^T$, where $\mathbf{U}$ and $\mathbf{V}$ are orthogonal matrices, and $\boldsymbol{\Sigma}$ contains singular values $\sigma_i$.
+* **Formulation**:
+  $$\hat{\boldsymbol{\beta}} = \mathbf{X}^+ \mathbf{y} = \mathbf{V} \boldsymbol{\Sigma}^+ \mathbf{U}^T \mathbf{y}$$
+* **Pros**: Handles rank-deficient or singular matrices (collinearity) by setting small singular values ($1/\sigma_i$) to 0.
 
 ---
 
@@ -119,16 +118,16 @@ In computational practice, explicitly computing $(\mathbf{X}^T \mathbf{X})^{-1}$
 
 For OLS estimators to possess optimal statistical properties, the model must satisfy the classical linear regression assumptions:
 
-1. **Linearity in Parameters**: $\mathbf{y} = \mathbf{X}oldsymbol{eta} + oldsymbol{arepsilon}$.
-2. **Exogeneity**: $\mathbb{E}[oldsymbol{arepsilon} \mid \mathbf{X}] = \mathbf{0}$.
-3. **Spherical Errors (Homoscedasticity & No Autocorrelation)**: $	ext{Var}(oldsymbol{arepsilon} \mid \mathbf{X}) = \sigma^2 \mathbf{I}_n$.
-4. **Full Rank**: $	ext{rank}(\mathbf{X}) = p+1 < n$ (No exact multicollinearity).
-5. **Normality (Optional for finite sample inference)**: $oldsymbol{arepsilon} \sim \mathcal{N}(\mathbf{0}, \sigma^2 \mathbf{I}_n)$.
+1. **Linearity in Parameters**: $\mathbf{y} = \mathbf{X} \boldsymbol{\beta} + \boldsymbol{\varepsilon}$.
+2. **Exogeneity**: $\mathbb{E}[\boldsymbol{\varepsilon} \mid \mathbf{X}] = \mathbf{0}$.
+3. **Spherical Errors (Homoscedasticity & No Autocorrelation)**: $\text{Var}(\boldsymbol{\varepsilon} \mid \mathbf{X}) = \sigma^2 \mathbf{I}_n$.
+4. **Full Rank**: $\text{rank}(\mathbf{X}) = p+1 < n$ (No exact multicollinearity).
+5. **Normality (Optional for finite sample inference)**: $\boldsymbol{\varepsilon} \sim \mathcal{N}(\mathbf{0}, \sigma^2 \mathbf{I}_n)$.
 
 ### The Gauss-Markov Theorem
-Under assumptions 1 to 4, the OLS estimator $\hat{oldsymbol{eta}}$ is the **BLUE** (**B**est **L**inear **U**nbiased **E**stimator).
-- **Unbiased**: $\mathbb{E}[\hat{oldsymbol{eta}}] = oldsymbol{eta}$.
-- **Best (Minimum Variance)**: $	ext{Var}(\hat{oldsymbol{eta}}) \le 	ext{Var}(	ilde{oldsymbol{eta}})$ for any other linear unbiased estimator $	ilde{oldsymbol{eta}}$.
+Under assumptions 1 to 4, the OLS estimator $\hat{\boldsymbol{\beta}}$ is the **BLUE** (**B**est **L**inear **U**nbiased **E**stimator).
+* **Unbiased**: $\mathbb{E}[\hat{\boldsymbol{\beta}}] = \boldsymbol{\beta}$.
+* **Best (Minimum Variance)**: $\text{Var}(\hat{\boldsymbol{\beta}}) \le \text{Var}(\tilde{\boldsymbol{\beta}})$ for any other linear unbiased estimator $\tilde{\boldsymbol{\beta}}$.
 
 ---
 
@@ -136,10 +135,10 @@ Under assumptions 1 to 4, the OLS estimator $\hat{oldsymbol{eta}}$ is the **BL
 
 To verify whether model assumptions hold, diagnostic plots are evaluated:
 
-- **Residuals vs Fitted**: Checks for non-linearity (curvature) and non-constant error variance.
-- **Normal Q-Q Plot**: Compares residual quantiles against standard normal quantiles to assess normality.
-- **Scale-Location Plot**: Standardized square-root residuals vs fitted values to test homoscedasticity.
-- **Histogram & Density**: Verifies symmetry and Gaussian tail distribution.
+* **Residuals vs Fitted**: Checks for non-linearity (curvature) and non-constant error variance.
+* **Normal Q-Q Plot**: Compares residual quantiles against standard normal quantiles to assess normality.
+* **Scale-Location Plot**: Standardized square-root residuals vs fitted values to test homoscedasticity.
+* **Histogram & Density**: Verifies symmetry and Gaussian tail distribution.
 
 ![Figure 5: Residual Diagnostics](figures/fig5_residual_diagnostics.png)
 
@@ -149,12 +148,12 @@ To verify whether model assumptions hold, diagnostic plots are evaluated:
 
 When data exhibits non-linear relationships, linear models can be extended using polynomial basis expansion:
 
-$$ y = eta_0 + eta_1 x + eta_2 x^2 + \dots + eta_d x^d + arepsilon $$
+$$y = \beta_0 + \beta_1 x + \beta_2 x^2 + \dots + \beta_d x^d + \varepsilon$$
 
-Although non-linear with respect to $x$, this remains a **linear model** because it is linear with respect to the parameters $oldsymbol{eta}$.
+Although non-linear with respect to $x$, this remains a **linear model** because it is linear with respect to the parameters $\boldsymbol{\beta}$.
 
-- **Low Degree (Underfitting)**: High bias, fails to capture trend.
-- **High Degree (Overfitting)**: High variance, fits noise in training data and oscillates wildy.
+* **Low Degree (Underfitting)**: High bias, fails to capture trend.
+* **High Degree (Overfitting)**: High variance, fits noise in training data and oscillates wildly.
 
 ![Figure 3: Polynomial Fitting](figures/fig3_polynomial_under_overfit.png)
 
@@ -162,22 +161,21 @@ Although non-linear with respect to $x$, this remains a **linear model** because
 
 ## 8. Regularized Linear Models
 
-When multicollinearity is present or $p > n$, OLS produces high-variance estimates. Regularization imposes a penalty on coefficient magnitude to trading a small bias for significant variance reduction.
+When multicollinearity is present or $p > n$, OLS produces high-variance estimates. Regularization imposes a penalty on coefficient magnitude to trade a small bias for significant variance reduction.
 
-$$\hat{oldsymbol{eta}}_{reg} = rg\min_{oldsymbol{eta}} \left( \|\mathbf{y} - \mathbf{X}oldsymbol{eta}\|_2^2 + \lambda \mathcal{P}(oldsymbol{eta}) 
-ight)$$
+$$\hat{\boldsymbol{\beta}}_{\text{reg}} = \arg\min_{\boldsymbol{\beta}} \left( \Vert{}\mathbf{y} - \mathbf{X} \boldsymbol{\beta}\Vert{}_2^2 + \lambda \mathcal{P}(\boldsymbol{\beta}) \right)$$
 
 ### 8.1 Ridge Regression ($L_2$ Regularization)
-- **Penalty**: $\mathcal{P}(oldsymbol{eta}) = \|oldsymbol{eta}\|_2^2 = \sum_{j=1}^p eta_j^2$.
-- **Closed-form Solution**: $\hat{oldsymbol{eta}}_{Ridge} = (\mathbf{X}^T \mathbf{X} + \lambda \mathbf{I})^{-1} \mathbf{X}^T \mathbf{y}$.
-- **Effect**: Shrinks coefficients toward zero, never sets them strictly to zero. Solves singularity when $\mathbf{X}^T\mathbf{X}$ is not invertible.
+* **Penalty**: $\mathcal{P}(\boldsymbol{\beta}) = \Vert{}\boldsymbol{\beta}\Vert{}_2^2 = \sum_{j=1}^p \beta_j^2$.
+* **Closed-form Solution**: $\hat{\boldsymbol{\beta}}_{\text{Ridge}} = (\mathbf{X}^T \mathbf{X} + \lambda \mathbf{I})^{-1} \mathbf{X}^T \mathbf{y}$.
+* **Effect**: Shrinks coefficients toward zero, never sets them strictly to zero. Solves singularity when $\mathbf{X}^T\mathbf{X}$ is not invertible.
 
 ### 8.2 Lasso Regression ($L_1$ Regularization)
-- **Penalty**: $\mathcal{P}(oldsymbol{eta}) = \|oldsymbol{eta}\|_1 = \sum_{j=1}^p |eta_j|$.
-- **Effect**: Performs sparse feature selection by driving irrelevant coefficients exactly to zero.
+* **Penalty**: $\mathcal{P}(\boldsymbol{\beta}) = \Vert{}\boldsymbol{\beta}\Vert{}_1 = \sum_{j=1}^p \vert{}\beta_j\vert{}$.
+* **Effect**: Performs sparse feature selection by driving irrelevant coefficients exactly to zero.
 
 ### 8.3 ElasticNet
-- **Penalty**: Combines $L_1$ and $L_2$ penalties: $\lambda_1 \|oldsymbol{eta}\|_1 + \lambda_2 \|oldsymbol{eta}\|_2^2$.
+* **Penalty**: Combines $L_1$ and $L_2$ penalties: $\lambda_1 \Vert{}\boldsymbol{\beta}\Vert{}_1 + \lambda_2 \Vert{}\boldsymbol{\beta}\Vert{}_2^2$.
 
 ![Figure 4: Ridge vs Lasso](figures/fig4_ridge_lasso_contours.png)
 
@@ -297,33 +295,3 @@ if __name__ == '__main__':
     
     print("Estimated Parameters (Intercept + Coeffs):", model.beta)
     print("Evaluation Metrics:", evaluate_regression(y_raw, preds, p=3))
-```
-
----
-
-## 10. Figures Download & Reference Links
-
-All figures generated in this study material are saved as high-resolution (300 DPI) images and can be accessed/downloaded directly:
-
-1. **Figure 1: OLS Regression Fit and Residuals**
-   - File Path: [`fig1_ols_fit.png`](figures/fig1_ols_fit.png)
-   - Description: Displays data points, fitted regression line, and individual vertical residual lines $e_i$.
-
-2. **Figure 2: Geometric Interpretation of Least Squares**
-   - File Path: [`fig2_ols_geometric.png`](figures/fig2_ols_geometric.png)
-   - Description: 3D vector diagram illustrating the orthogonal projection of vector $\mathbf{y}$ onto column space $\mathcal{C}(\mathbf{X})$.
-
-3. **Figure 3: Polynomial Underfitting vs Overfitting**
-   - File Path: [`fig3_polynomial_under_overfit.png`](figures/fig3_polynomial_under_overfit.png)
-   - Description: Comparison of degree 1 (underfit), degree 3 (balanced), and degree 14 (overfit) polynomial least squares fits.
-
-4. **Figure 4: Lasso vs Ridge Contour Plots**
-   - File Path: [`fig4_ridge_lasso_contours.png`](figures/fig4_ridge_lasso_contours.png)
-   - Description: Geometry of $L_1$ diamond and $L_2$ circle constraint regions overlaid on OLS sum of squares contours.
-
-5. **Figure 5: Residual Diagnostics Plots**
-   - File Path: [`fig5_residual_diagnostics.png`](figures/fig5_residual_diagnostics.png)
-   - Description: 4-panel diagnostic suite featuring Residuals vs Fitted, Normal Q-Q Plot, Scale-Location, and Error Distribution.
-
----
-*End of Reading Material.*
