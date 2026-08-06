@@ -1,4 +1,4 @@
-# Reading Material: Determinants, Matrix Rank, and Linear Systems
+markdown_content = """# Reading Material: Determinants, Matrix Rank, and Linear Systems
 
 ## Table of Contents
 1. [Introduction](#1-introduction)
@@ -35,11 +35,11 @@ Linear algebra provides the mathematical backbone for modern data science, quant
 
 ## 2. Determinants of Square Matrices
 
-The determinant is a scalar value uniquely associated with any **square matrix** $A \in \mathbb{R}^{n 	imes n}$, denoted as $\det(A)$ or $|A|$.
+The determinant is a scalar value uniquely associated with any **square matrix** $A \in \mathbb{R}^{n \times n}$, denoted as $\det(A)$ or $\vert{}A\vert{}$.
 
 ### Geometric Intuition
 
-Geometrically, a matrix transformation $A$ maps the unit hypercube in $\mathbb{R}^n$ into a parallelepiped. The **absolute value of the determinant**, $|\det(A)|$, represents the factor by which areas (in 2D), volumes (in 3D), or $n$-dimensional volumes are scaled under $A$.
+Geometrically, a matrix transformation $A$ maps the unit hypercube in $\mathbb{R}^n$ into a parallelepiped. The **absolute value of the determinant**, $\vert{}\det(A)\vert{}$, represents the factor by which areas (in 2D), volumes (in 3D), or $n$-dimensional volumes are scaled under $A$.
 
 - If $\det(A) > 0$, the transformation preserves spatial orientation (right-handed orientation stays right-handed).
 - If $\det(A) < 0$, the transformation reverses orientation (a reflection occurs).
@@ -61,10 +61,10 @@ $$\det(A) = ad - bc$$
 For $A = \begin{pmatrix} a & b & c \\ d & e & f \\ g & h & i \end{pmatrix}$:
 $$\det(A) = a(ei - fh) - b(di - fg) + c(dh - eg)$$
 
-#### 3. General $n 	imes n$ Matrix (Laplace Cofactor Expansion)
+#### 3. General $n \times n$ Matrix (Laplace Cofactor Expansion)
 For any row $i$:
 $$\det(A) = \sum_{j=1}^{n} (-1)^{i+j} a_{ij} M_{ij}$$
-where $M_{ij}$ is the minor (determinant of the $(n-1) 	imes (n-1)$ submatrix obtained by deleting row $i$ and column $j$). The quantity $C_{ij} = (-1)^{i+j} M_{ij}$ is called the **cofactor**.
+where $M_{ij}$ is the minor (determinant of the $(n-1) \times (n-1)$ submatrix obtained by deleting row $i$ and column $j$). The quantity $C_{ij} = (-1)^{i+j} M_{ij}$ is called the **cofactor**.
 
 ---
 
@@ -73,8 +73,8 @@ where $M_{ij}$ is the minor (determinant of the $(n-1) 	imes (n-1)$ submatrix ob
 1. **Identity Matrix:** $\det(I) = 1$.
 2. **Transpose:** $\det(A^T) = \det(A)$.
 3. **Multiplicativity:** $\det(AB) = \det(A) \cdot \det(B)$.
-4. **Inverse:** If $A$ is invertible, $\det(A^{-1}) = rac{1}{\det(A)}$.
-5. **Scalar Multiplication:** For $A \in \mathbb{R}^{n 	imes n}$ and scalar $k \in \mathbb{R}$, $\det(kA) = k^n \det(A)$.
+4. **Inverse:** If $A$ is invertible, $\det(A^{-1}) = \frac{1}{\det(A)}$.
+5. **Scalar Multiplication:** For $A \in \mathbb{R}^{n \times n}$ and scalar $k \in \mathbb{R}$, $\det(kA) = k^n \det(A)$.
 6. **Row Swaps:** Swapping any two rows (or columns) multiplies the determinant by $-1$.
 7. **Identical Rows/Columns:** If a matrix has two identical rows or columns, $\det(A) = 0$.
 8. **Row Addition:** Adding a scalar multiple of one row to another row leaves the determinant **unchanged**.
@@ -82,8 +82,6 @@ where $M_{ij}$ is the minor (determinant of the $(n-1) 	imes (n-1)$ submatrix ob
    $$\det(A) = \prod_{i=1}^n a_{ii}$$
 
 ---
-
-
 
 ## 3. Rank of a Matrix
 
@@ -96,7 +94,7 @@ $$c_1 \mathbf{v}_1 + c_2 \mathbf{v}_2 + \dots + c_k \mathbf{v}_k = \mathbf{0} \i
 
 - **Column Rank:** Maximum number of linearly independent columns.
 - **Row Rank:** Maximum number of linearly independent rows.
-- **Fundamental Theorem:** For any matrix $A$, $	ext{Row Rank}(A) = 	ext{Column Rank}(A) = 	ext{rank}(A)$.
+- **Fundamental Theorem:** For any matrix $A$, $\text{Row Rank}(A) = \text{Column Rank}(A) = \text{rank}(A)$.
 
 ![Matrix Rank and Dimensional Collapse](figures/fig2_rank_dimension.png)
 
@@ -120,49 +118,47 @@ We can reduce any matrix $A$ into its **Row Echelon Form (REF)** or **Reduced Ro
 ### Methods for Computing Matrix Rank
 
 1. **Gaussian Elimination (REF Method):** Reduce $A$ using row operations and count the number of pivots.
-2. **Determinant Minor Method:** $	ext{rank}(A)$ is the order $r$ of the largest non-zero square minor of $A$.
-3. **Singular Value Decomposition (SVD):** $	ext{rank}(A)$ equals the number of non-zero singular values ($\sigma_i > 0$).
+2. **Determinant Minor Method:** $\text{rank}(A)$ is the order $r$ of the largest non-zero square minor of $A$.
+3. **Singular Value Decomposition (SVD):** $\text{rank}(A)$ equals the number of non-zero singular values ($\sigma_i > 0$).
 
 ---
 
 ### The Rank-Nullity Theorem
 
-For any linear transformation $A: \mathbb{R}^n 	o \mathbb{R}^m$ represented by an $m 	imes n$ matrix $A$:
+For any linear transformation $A: \mathbb{R}^n \to \mathbb{R}^m$ represented by an $m \times n$ matrix $A$:
 
-$$	ext{rank}(A) + 	ext{nullity}(A) = n$$
+$$\text{rank}(A) + \text{nullity}(A) = n$$
 
 Where:
-- $	ext{rank}(A) = \dim(	ext{Col}(A))$ is the dimension of the Column Space (Image).
-- $	ext{nullity}(A) = \dim(	ext{Null}(A))$ is the dimension of the Null Space (Kernel).
+- $\text{rank}(A) = \dim(\text{Col}(A))$ is the dimension of the Column Space (Image).
+- $\text{nullity}(A) = \dim(\text{Null}(A))$ is the dimension of the Null Space (Kernel).
 - $n$ is the total number of columns (dimension of the domain space).
 
 ---
 
 ### Properties of Matrix Rank
 
-1. **Upper Bound:** $	ext{rank}(A) \le \min(m, n)$ for an $m 	imes n$ matrix.
-2. **Full Rank:** $A$ is full rank if $	ext{rank}(A) = \min(m, n)$.
-3. **Transpose Invariance:** $	ext{rank}(A) = 	ext{rank}(A^T)$.
-4. **Product Property:** $	ext{rank}(AB) \le \min(	ext{rank}(A), 	ext{rank}(B))$.
-5. **Invertibility Criterion:** An $n 	imes n$ matrix $A$ is invertible if and only if $	ext{rank}(A) = n$ (i.e., $\det(A) 
-eq 0$).
+1. **Upper Bound:** $\text{rank}(A) \le \min(m, n)$ for an $m \times n$ matrix.
+2. **Full Rank:** $A$ is full rank if $\text{rank}(A) = \min(m, n)$.
+3. **Transpose Invariance:** $\text{rank}(A) = \text{rank}(A^T)$.
+4. **Product Property:** $\text{rank}(AB) \le \min(\text{rank}(A), \text{rank}(B))$.
+5. **Invertibility Criterion:** An $n \times n$ matrix $A$ is invertible if and only if $\text{rank}(A) = n$ (i.e., $\det(A) \neq 0$).
 
 ---
 
 ## 4. Applications to Systems of Linear Equations
 
-A system of linear equations can be expressed as $A\mathbf{x} = \mathbf{b}$, where $A \in \mathbb{R}^{m 	imes n}$, $\mathbf{x} \in \mathbb{R}^n$, and $\mathbf{b} \in \mathbb{R}^m$. The augmented matrix is $[A \mid \mathbf{b}]$.
+A system of linear equations can be expressed as $A\mathbf{x} = \mathbf{b}$, where $A \in \mathbb{R}^{m \times n}$, $\mathbf{x} \in \mathbb{R}^n$, and $\mathbf{b} \in \mathbb{R}^m$. The augmented matrix is $[A \mid \mathbf{b}]$.
 
 ### Rouché–Capelli Theorem
 
 1. **Consistent System (At least one solution):**
-   $$	ext{rank}(A) = 	ext{rank}([A \mid \mathbf{b}])$$
-   - **Unique Solution:** If $	ext{rank}(A) = 	ext{rank}([A \mid \mathbf{b}]) = n$ (number of variables).
-   - **Infinitely Many Solutions:** If $	ext{rank}(A) = 	ext{rank}([A \mid \mathbf{b}]) < n$. The solution space has $n - 	ext{rank}(A)$ free parameters.
+   $$\text{rank}(A) = \text{rank}([A \mid \mathbf{b}])$$
+   - **Unique Solution:** If $\text{rank}(A) = \text{rank}([A \mid \mathbf{b}]) = n$ (number of variables).
+   - **Infinitely Many Solutions:** If $\text{rank}(A) = \text{rank}([A \mid \mathbf{b}]) < n$. The solution space has $n - \text{rank}(A)$ free parameters.
 
 2. **Inconsistent System (No solution):**
-   $$	ext{rank}(A) 
-eq 	ext{rank}([A \mid \mathbf{b}])$$
+   $$\text{rank}(A) \neq \text{rank}([A \mid \mathbf{b}])$$
 
 ![System Solutions](figures/fig3_system_solutions.png)
 
@@ -195,130 +191,3 @@ print(f"Symbolic Determinant (SymPy): {det_sym}")
 # Concrete matrix in SymPy
 A_exact = sp.Matrix([[4, 2, 1], [0, 5, 3], [2, 1, 6]])
 print(f"Exact Determinant (SymPy): {A_exact.det()}")
-```
-
----
-
-### Determining Matrix Rank
-
-```python
-import numpy as np
-import sympy as sp
-
-# Rank deficient matrix (Row 3 = Row 1 + Row 2)
-B = np.array([[1, 2, 3],
-              [4, 5, 6],
-              [5, 7, 9]], dtype=float)
-
-# NumPy matrix rank (uses SVD under the hood)
-rank_numpy = np.linalg.matrix_rank(B)
-print(f"Matrix Rank (NumPy): {rank_numpy}")
-
-# SymPy exact rank calculation
-B_sym = sp.Matrix(B)
-print(f"Matrix Rank (SymPy): {B_sym.rank()}")
-```
-
----
-
-### Gaussian Elimination & RREF Implementation
-
-```python
-import sympy as sp
-
-# Matrix for RREF computation
-M = sp.Matrix([
-    [1, 2, -1, 3],
-    [2, 4,  0, 8],
-    [-1, -2, 3, 1]
-])
-
-# Compute RREF and identify pivot column indices
-rref_matrix, pivot_cols = M.rref()
-
-print("Reduced Row Echelon Form (RREF):")
-sp.pprint(rref_matrix)
-print(f"Pivot Columns: {pivot_cols}")
-print(f"Computed Rank: {len(pivot_cols)}")
-```
-
----
-
-### Solving Systems of Linear Equations
-
-```python
-import numpy as np
-
-def analyze_system(A, b):
-    """Analyze consistency and solve Ax = b using matrix rank."""
-    A = np.array(A, dtype=float)
-    b = np.array(b, dtype=float).reshape(-1, 1)
-    
-    Augmented = np.hstack([A, b])
-    
-    rank_A = np.linalg.matrix_rank(A)
-    rank_Aug = np.linalg.matrix_rank(Augmented)
-    num_vars = A.shape[1]
-    
-    print(f"Rank(A): {rank_A}, Rank([A|b]): {rank_Aug}, Variables: {num_vars}")
-    
-    if rank_A != rank_Aug:
-        print("System is INCONSISTENT (No solution exists).")
-        return None
-    elif rank_A == num_vars:
-        x = np.linalg.solve(A, b)
-        print("System has a UNIQUE solution:")
-        return x
-    else:
-        print("System has INFINITELY MANY solutions.")
-        return None
-
-# Test unique solution
-A1 = [[2, -1], [1, 1]]
-b1 = [1, 2]
-print("--- System 1 ---")
-x1 = analyze_system(A1, b1)
-if x1 is not None:
-    print(x1.ravel())
-
-# Test inconsistent system
-A2 = [[1, -2], [1, -2]]
-b2 = [-2, 1]
-print("\n--- System 2 ---")
-analyze_system(A2, b2)
-```
-
----
-
-## 6. Figures & Download Links
-
-All visual diagrams generated for this document are saved locally and available for download:
-
-- **[Download Figure 1: Determinant as Area Scaling (PNG)](figures/fig1_determinant_area.png)**
-- **[Download Figure 2: Matrix Rank & Dimension Collapse (PNG)](figures/fig2_rank_dimension.png)**
-- **[Download Figure 3: Linear Systems and Solutions (PNG)](figures/fig3_system_solutions.png)**
-
----
-
-## 7. Solved Practice Problems
-
-### Problem 1: Determinant Calculation
-**Find the determinant of the matrix:**
-$$A = \begin{pmatrix} 2 & 0 & 3 \\ 1 & 4 & -10 \\ 0 & 0 & 5 \end{pmatrix}$$
-
-**Solution:**
-Expanding along the 3rd row (which has two zeros):
-$$\det(A) = 0 \cdot C_{31} + 0 \cdot C_{32} + 5 \cdot C_{33} = 5 \cdot \begin{vmatrix} 2 & 0 \\ 1 & 4 \end{vmatrix}$$
-$$\det(A) = 5 \cdot (2 \cdot 4 - 0 \cdot 1) = 5 \cdot 8 = 40$$
-
----
-
-### Problem 2: Rank Analysis with a Parameter
-**Find the value of $k$ for which the matrix $B$ has rank less than 3:**
-$$B = \begin{pmatrix} 1 & 2 & 3 \\ 0 & k & 4 \\ 2 & 4 & 6 \end{pmatrix}$$
-
-**Solution:**
-Notice that Row 3 is twice Row 1 ($R_3 = 2 R_1$).
-Applying row operation $R_3 \to R_3 - 2R_1$:
-$$B \sim \begin{pmatrix} 1 & 2 & 3 \\ 0 & k & 4 \\ 0 & 0 & 0 \end{pmatrix}$$
-Since Row 3 is all zeros, the maximum possible rank is 2. Therefore, $\text{rank}(B) < 3$ for **all values of $k$**. If $k = 0$, $\text{rank}(B) = 1$; if $k \neq 0$, $\text{rank}(B) = 2$.
