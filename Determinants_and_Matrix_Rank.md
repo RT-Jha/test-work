@@ -53,12 +53,12 @@ Geometrically, a matrix transformation $A$ maps the unit hypercube in $\mathbb{R
 
 ### Analytical Definitions & Computation
 
-#### 1. $2 	imes 2$ Matrix
-For a matrix $A = egin{pmatrix} a & b \ c & d \end{pmatrix}$:
+#### 1. $2 \times 2$ Matrix
+For a matrix $A = \begin{pmatrix} a & b \\ c & d \end{pmatrix}$:
 $$\det(A) = ad - bc$$
 
-#### 2. $3 	imes 3$ Matrix (Sarrus' Rule / Laplace Expansion)
-For $A = egin{pmatrix} a & b & c \ d & e & f \ g & h & i \end{pmatrix}$:
+#### 2. $3 \times 3$ Matrix (Sarrus' Rule / Laplace Expansion)
+For $A = \begin{pmatrix} a & b & c \\ d & e & f \\ g & h & i \end{pmatrix}$:
 $$\det(A) = a(ei - fh) - b(di - fg) + c(dh - eg)$$
 
 #### 3. General $n 	imes n$ Matrix (Laplace Cofactor Expansion)
