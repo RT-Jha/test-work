@@ -304,18 +304,18 @@ All visual diagrams generated for this document are saved locally and available 
 
 ### Problem 1: Determinant Calculation
 **Find the determinant of the matrix:**
-$$A = egin{pmatrix} 2 & 0 & 3 \ 1 & 4 & -10 \ 0 & 0 & 5 \end{pmatrix}$$
+$$A = \begin{pmatrix} 2 & 0 & 3 \ 1 & 4 & -10 \ 0 & 0 & 5 \end{pmatrix}$$
 
 **Solution:**
 Expanding along the 3rd row (which has two zeros):
-$$\det(A) = 0 \cdot C_{31} + 0 \cdot C_{32} + 5 \cdot C_{33} = 5 \cdot egin{vmatrix} 2 & 0 \ 1 & 4 \end{vmatrix}$$
+$$\det(A) = 0 \cdot C_{31} + 0 \cdot C_{32} + 5 \cdot C_{33} = 5 \cdot \begin{vmatrix} 2 & 0 \ 1 & 4 \end{vmatrix}$$
 $$\det(A) = 5 \cdot (2 \cdot 4 - 0 \cdot 1) = 5 \cdot 8 = 40$$
 
 ---
 
 ### Problem 2: Rank Analysis with a Parameter
 **Find the value of $k$ for which the matrix $B$ has rank less than 3:**
-$$B = egin{pmatrix} 1 & 2 & 3 \ 0 & k & 4 \ 2 & 4 & 6 \end{pmatrix}$$
+$$B = \begin{pmatrix} 1 & 2 & 3 \ 0 & k & 4 \ 2 & 4 & 6 \end{pmatrix}$$
 
 **Solution:**
 Notice that Row 3 is twice Row 1 ($R_3 = 2 R_1$).
