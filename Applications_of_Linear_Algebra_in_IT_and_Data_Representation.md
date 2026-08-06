@@ -1,7 +1,4 @@
-```text?code_stdout&code_event_index=1
-Traceback (most recent call last):
-  File "<xbox-string>", line 249
-    markdown_content = """# Reading Material: Determinants, Matrix Rank, and Linear Systems
+markdown_content = """# Reading Material: Determinants, Matrix Rank, and Linear Systems
 
 ## Table of Contents
 1. [Introduction](#1-introduction)
