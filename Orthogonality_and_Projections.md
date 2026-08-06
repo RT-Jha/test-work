@@ -89,7 +89,7 @@ The Gram-Schmidt process is an algorithm for converting any set of linearly inde
 ![Figure 3: Gram-Schmidt Process](figures/gram_schmidt_process.png)
 
 ### Step-by-Step Algorithm:
-1. $\mathbf{v}_1 = \mathbf{x}_1$
+1. $$\mathbf{v}_1 = \mathbf{x}_1$$
 2. $\mathbf{v}_2 = \mathbf{x}_2 - \mathrm{proj}_{\mathbf{v}_1}(\mathbf{x}_2) = \mathbf{x}_2 - \frac{\mathbf{x}_2 \cdot \mathbf{v}_1}{\|\mathbf{v}_1\|^2} \mathbf{v}_1$
 3. $\mathbf{v}_3 = \mathbf{x}_3 - \mathrm{proj}_{\mathbf{v}_1}(\mathbf{x}_3) - \mathrm{proj}_{\mathbf{v}_2}(\mathbf{x}_3) = \mathbf{x}_3 - \frac{\mathbf{x}_3 \cdot \mathbf{v}_1}{\|\mathbf{v}_1\|^2} \mathbf{v}_1 - \frac{\mathbf{x}_3 \cdot \mathbf{v}_2}{\|\mathbf{v}_2\|^2} \mathbf{v}_2$
 4. In general for vector $k$:
